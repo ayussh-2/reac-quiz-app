@@ -1,4 +1,4 @@
-export default function Header({ quesNum, difficulty, total, gotMark }) {
+export default function Header({ quesNum, difficulty, total }) {
     return (
         <div className="justify-between flex">
             <div id="quesCount">Q{quesNum}</div>

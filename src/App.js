@@ -2,8 +2,10 @@ import Card from "./components/card";
 
 export default function App() {
     return (
-        <div className="flex h-screen justify-center items-center">
-            <Card></Card>
-        </div>
+        <>
+            <div className="md:px-80 md:py-20 mx-5 my-44">
+                <Card />
+            </div>
+        </>
     );
 }

@@ -13,6 +13,7 @@ module.exports = {
                 dllBlue: "#4361EE",
                 dseaBlue: "#4895EF",
                 seaBlue: "#4CC9F0",
+                btn: "#6e82fc",
             },
         },
     },

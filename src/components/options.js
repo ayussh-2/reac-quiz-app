@@ -2,7 +2,7 @@ export default function Options({ children, onHandleAnswer, optNo, qNo }) {
     return (
         <div
             id="opt"
-            className="flex group p-1 rounded-3xl cursor-pointer   duration-700"
+            className="flex group p-1 rounded-3xl cursor-pointer duration-700 "
             onClick={() => onHandleAnswer({ optNo })}
         >
             <button
@@ -10,7 +10,9 @@ export default function Options({ children, onHandleAnswer, optNo, qNo }) {
                     group-hover:scale-90 group-active:scale-75 duration-200 p-5"
             ></button>
             <div className="p-2">
-                <p className="tracking-wider">{children}</p>
+                <p className="tracking-wider text-sm md:text-base">
+                    {children}
+                </p>
             </div>
             <input
                 type="text"
