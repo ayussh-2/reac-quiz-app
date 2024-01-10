@@ -143,7 +143,9 @@ export default function Card() {
     function handleAttempts(attempt) {
         setAttempts((prevAtt) => prevAtt + attempt);
     }
+
     var id = "";
+    var sel = "";
     function handleAnswers(chose) {
         const ans = data[currStage].answer;
         id = `q${currStage + 1}-opt${chose.optNo}`;
@@ -153,6 +155,12 @@ export default function Card() {
         } else {
             handleCorrect(0);
         }
+
+        sel = `${id}-sel`;
+        console.log(sel);
+        const highlightOpt = document.getElementById(sel);
+        highlightOpt.classList.toggle("scale-50");
+
         handleAttempts(1);
         handleNext();
     }
@@ -187,6 +195,7 @@ export default function Card() {
                 ></Header>
 
                 <Questions>{data[currStage].question}</Questions>
+
                 <div id="options" className="md:space-y-5 space-y-2 text-white">
                     {data[currStage].options.map((option, index) => (
                         <Options
