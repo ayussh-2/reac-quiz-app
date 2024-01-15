@@ -6,7 +6,7 @@ import Questions from "./questions";
 import FinalScore from "./scorepage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Slide, Zoom, Flip, Bounce } from "react-toastify";
+import { Slide } from "react-toastify";
 
 const data = [
     {
@@ -113,6 +113,7 @@ export default function Card() {
     const [submit, setSubmit] = useState(false);
     const [correct, setCorrect] = useState(0);
     const [attempts, setAttempts] = useState(0);
+    const [selected, setSelected] = useState(null);
 
     function handleNext() {
         if (currStage === 9) {
@@ -123,13 +124,10 @@ export default function Card() {
     }
     function handlePrevious() {
         if (currStage > 0) setCurrStage((s) => s - 1);
-        // console.log(currStage);
     }
-
     function handleCorrect(correct) {
         setCorrect((prev) => prev + correct);
     }
-
     function handleSubmit() {
         if (attempts !== 0) {
             var quesCon = document.getElementById("quesContent");
@@ -139,13 +137,24 @@ export default function Card() {
             showToast();
         }
     }
-
     function handleAttempts(attempt) {
         setAttempts((prevAtt) => prevAtt + attempt);
     }
 
-    var id = "";
     var sel = "";
+    function handleSelOption(ques, ans) {
+        const prevOpt = document.getElementsByClassName("opttxt");
+        for (let i = 0; i < prevOpt.length; i++) {
+            prevOpt[i].classList.remove("font-bold");
+        }
+
+        sel = `s${ques}-opt${ans}`;
+        console.log(sel);
+        const selOpt = document.getElementById(sel);
+        selOpt.classList.add("font-bold");
+    }
+
+    var id = "";
     function handleAnswers(chose) {
         const ans = data[currStage].answer;
         id = `q${currStage + 1}-opt${chose.optNo}`;
@@ -155,12 +164,10 @@ export default function Card() {
         } else {
             handleCorrect(0);
         }
-
-        sel = `${id}-sel`;
-        console.log(sel);
-        const highlightOpt = document.getElementById(sel);
-        highlightOpt.classList.toggle("scale-50");
-
+        const q = currStage + 1;
+        const a = chose.optNo;
+        console.log(q + "-" + a);
+        handleSelOption(q, a);
         handleAttempts(1);
         handleNext();
     }
